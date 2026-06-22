@@ -10,8 +10,8 @@ import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
 import { ToastProvider } from "../providers/ToastProvider";
 
 export const metadata: Metadata = {
-  title: "PS5 PKG Virtual Shop",
-  description: "Local PS5 PKG server",
+  title: "CANGAROO",
+  description: "Cangaroo shop",
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
