@@ -1,7 +1,7 @@
 "use server";
 
 import { headers } from "next/headers";
-import { getDownloader } from "../../features/downloader/utils/jdownloader";
+import { getActiveDownloader } from "../../features/downloader/utils/getActiveDownloader";
 import { detectDevice } from "../detectDevice";
 import { Device } from "../../types";
 
@@ -11,16 +11,12 @@ export interface AppStatus {
 }
 
 export async function getAppStatus(): Promise<AppStatus> {
-  const [headersList, downloader] = await Promise.all([
-    headers(),
-    getDownloader(),
-  ]);
+  const [headersList] = await Promise.all([headers(), getActiveDownloader()]);
   const userAgent = headersList.get("user-agent");
   const device = detectDevice(userAgent);
-  const isConnected = await downloader?.checkConnectivity();
 
   return {
-    downloader_ok: Boolean(isConnected),
+    downloader_ok: true,
     device,
   };
 }

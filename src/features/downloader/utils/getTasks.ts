@@ -1,7 +1,7 @@
-import { getDownloader } from "./jdownloader";
+import { getActiveDownloader } from "./getActiveDownloader";
 
 export async function getTasks() {
-  const jd = await getDownloader();
-  const tasks = await jd?.getTasks();
+  const jd = await getActiveDownloader();
+  const tasks = await jd?.fetchTasks();
   return tasks?.toReversed() || [];
 }

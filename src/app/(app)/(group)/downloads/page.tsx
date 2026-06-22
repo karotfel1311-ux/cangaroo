@@ -1,16 +1,13 @@
 import { Stack, Text } from "@mantine/core";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
+
 import { PageWrapper } from "../../../../components/PageWrapper";
 import { DownloadList } from "../../../../features/downloader/components/DownloadList";
 import { RefreshStatus } from "../../../../features/downloader/components/RefreshStatus";
-import { getDownloader } from "../../../../features/downloader/utils/jdownloader";
-
-dayjs.extend(relativeTime);
+import { getActiveDownloader } from "../../../../features/downloader/utils/getActiveDownloader";
 
 export default async function ActiveTasksDropdown() {
-  const jd = await getDownloader();
-  const tasks = await jd?.getTasks();
+  const jd = await getActiveDownloader();
+  const tasks = await jd?.fetchTasks();
   const reversed = tasks?.toReversed();
 
   return (
@@ -24,7 +21,6 @@ export default async function ActiveTasksDropdown() {
             No active tasks
           </Text>
         ) : (
-          //@ts-expect-error tasks
           <DownloadList tasks={reversed} />
         )}
       </Stack>

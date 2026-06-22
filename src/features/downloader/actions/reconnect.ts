@@ -1,11 +1,11 @@
 "use server";
 
 import { refresh } from "next/cache";
-import { getDownloader } from "../utils/jdownloader";
+import { getActiveDownloader } from "../utils/getActiveDownloader";
 
 export async function reconnectDownloader() {
-  const jd = await getDownloader();
-  await jd?.init();
+  const jd = await getActiveDownloader();
+  await jd?.connect();
   refresh();
   return true;
 }

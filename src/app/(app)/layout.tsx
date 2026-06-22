@@ -30,7 +30,14 @@ export default async function Layout(props: LayoutProps<"/">) {
       <AppShellNavbar p="md" visibleFrom="sm">
         <Stack>
           <Box pos="relative" h="40px">
-            <Image src={logo.src} layout="fill" objectFit="scale-down" />
+            <Image
+              src={logo.src}
+              fill
+              alt="app-logo"
+              style={{ objectFit: "scale-down" }}
+              sizes="100%"
+              loading="eager"
+            />
           </Box>
           <AgentStatusCard instalator={instalatorConfig} status={status} />
           <SideMenu
