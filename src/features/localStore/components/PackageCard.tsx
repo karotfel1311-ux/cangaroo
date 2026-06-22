@@ -2,13 +2,13 @@
 
 import { Badge, Button, Card, Group, Image, Stack, Text } from "@mantine/core";
 import { GameDetailsDrawer } from "./GameDetailsDrawer";
-import { AppConfig } from "../../../queries/getConfig";
 import { InstalatorSchema } from "../schemas/instalatorSchema";
 import { PkgMappedItem } from "../../localScanner/utils/types";
+import { ConfigSchema } from "../../configuration/schemas/configSchema";
 
 interface PackageCardResolvedProps {
   item: PkgMappedItem;
-  appConfig: AppConfig;
+  appConfig: ConfigSchema;
   instalConfig: InstalatorSchema;
 }
 

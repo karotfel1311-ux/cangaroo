@@ -1,12 +1,12 @@
-import { safeArray } from "../../../../utils/safeArray";
-import { getConfig } from "../../../../queries/getConfig";
-import { PageWrapper } from "../../../../components/PageWrapper";
-import { ListSearch } from "../../../../components/ListSearch";
-import { ListPagination } from "../../../../components/ListPagination";
+import { safeArray } from "../../../utils/safeArray";
+import { PageWrapper } from "../../../components/PageWrapper";
+import { ListSearch } from "../../../components/ListSearch";
+import { ListPagination } from "../../../components/ListPagination";
 import { Center, SimpleGrid, Text } from "@mantine/core";
-import { PackageCard } from "../../../../features/localStore/components/PackageCard";
-import { loadLocalFiles } from "../../../../features/localScanner";
-import { getInstalatorConfig } from "../../../../features/localStore/utils/instalator";
+import { PackageCard } from "../../../features/localStore/components/PackageCard";
+import { loadLocalFiles } from "../../../features/localScanner";
+import { getInstalatorConfig } from "../../../features/localStore/utils/instalator";
+import { getBaseConfigContent } from "../../../features/configuration/utils/getConfigContent";
 
 const ITEMS_PER_PAGE = 16;
 
@@ -26,7 +26,7 @@ export default async function ShopPage({ searchParams }: PageProps<"/local">) {
   const items = matched.slice(start, start + ITEMS_PER_PAGE);
   const totalPages = total > 0 ? Math.ceil(total / ITEMS_PER_PAGE) : 0;
 
-  const config = await getConfig();
+  const config = getBaseConfigContent();
   const instalConfig = await getInstalatorConfig();
 
   return (
@@ -48,7 +48,7 @@ export default async function ShopPage({ searchParams }: PageProps<"/local">) {
         {!Boolean(items?.length) ? (
           <Text c="dimmed">No packages found.</Text>
         ) : (
-          <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }}>
+          <SimpleGrid cols={{ base: 1, sm: 2, lg: 6 }}>
             {items?.map((item, index) => (
               <PackageCard
                 appConfig={config}

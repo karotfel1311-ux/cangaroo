@@ -13,10 +13,10 @@ import {
   AccordionPanel,
   ActionIcon,
 } from "@mantine/core";
-import { PageWrapper } from "../../../../../../../components/PageWrapper";
-import { RemoteLinksGroup } from "../../../../../../../components/RemoteLinksGroup";
+import { PageWrapper } from "../../../../../../components/PageWrapper";
+import { RemoteLinksGroup } from "../../../../../../components/RemoteLinksGroup";
 import { Fragment } from "react/jsx-runtime";
-import { strategies } from "../../../../../../../features/remoteRepository";
+import { strategies } from "../../../../../../features/remoteRepository";
 import { ArrowSquareOutIcon } from "@phosphor-icons/react/dist/ssr";
 
 export default async function Page({

@@ -8,12 +8,12 @@ export const ps4dpi = declareInstalator("PS4DPI", {
       port: z.string(),
       type: z.string(),
     })
-    .default({ port: "9020", type: "direct" })
-    .meta({
-      description: "goldhen DPI (debug settings)",
-      port: { type: "number", placeholder: "9020" },
-      type: { placeholder: "direct/install/pkg" },
-    }),
+    .default({ port: "9020", type: "direct" }),
+  description: "goldhen DPI (debug settings)",
+  meta: {
+    port: { type: "number", placeholder: "9020" },
+    type: { placeholder: "direct/install/pkg" },
+  },
   handler: async (url, config) => {
     const consoleAddress = config?.console_address;
     const consolePort = config?.port;
@@ -34,7 +34,7 @@ export const ps4dpi = declareInstalator("PS4DPI", {
           headers: {
             "Content-Type": "application/json",
           },
-          timeout: 15000, // 15 sekund
+          timeout: 15_000, // 15 sekund
         },
       );
 

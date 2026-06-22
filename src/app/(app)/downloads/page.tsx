@@ -1,9 +1,9 @@
 import { Stack, Text } from "@mantine/core";
 
-import { PageWrapper } from "../../../../components/PageWrapper";
-import { DownloadList } from "../../../../features/downloader/components/DownloadList";
-import { RefreshStatus } from "../../../../features/downloader/components/RefreshStatus";
-import { getActiveDownloader } from "../../../../features/downloader/utils/getActiveDownloader";
+import { PageWrapper } from "../../../components/PageWrapper";
+import { DownloadList } from "../../../features/downloader/components/DownloadList";
+import { RefreshStatus } from "../../../features/downloader/components/RefreshStatus";
+import { getActiveDownloader } from "../../../features/downloader/utils/getActiveDownloader";
 
 export default async function ActiveTasksDropdown() {
   const jd = await getActiveDownloader();

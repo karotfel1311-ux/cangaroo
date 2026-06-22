@@ -9,7 +9,6 @@ import {
 } from "@mantine/core";
 import { AgentStatusCard } from "../../components/AgentStatusCard";
 import { SideMenu } from "../../components/SideMenu";
-import { getConfig } from "../../queries/getConfig";
 import { getAppStatus } from "../../utils/status";
 import {
   getInstalatorConfig,
@@ -18,9 +17,10 @@ import {
 import { LoaderOverlay } from "../../components/TestLoader";
 import Image from "next/image";
 import logo from "../../assets/logo.png";
+import { getBaseConfigContent } from "../../features/configuration/utils/getConfigContent";
 
 export default async function Layout(props: LayoutProps<"/">) {
-  const config = await getConfig();
+  const config = getBaseConfigContent();
   const status = await getAppStatus();
   const instalatorConfig = await getInstalatorConfig();
   const instalatorMeta = getInstalatorMetadata();
@@ -43,8 +43,8 @@ export default async function Layout(props: LayoutProps<"/">) {
           <SideMenu
             status={status}
             config={config}
-            settingsInstalatorOptions={instalatorConfig}
-            settingsInstalatorMeta={instalatorMeta}
+            configInstalatorOptions={instalatorConfig}
+            configInstalatorMeta={instalatorMeta}
           />
         </Stack>
       </AppShellNavbar>

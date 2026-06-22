@@ -1,19 +1,6 @@
-import { Card, Text, Group, Stack, ThemeIcon } from "@mantine/core";
-import { CheckCircleIcon, XCircleIcon } from "@phosphor-icons/react/dist/ssr";
+import { Card, Text, Group, Stack } from "@mantine/core";
 import { AppStatus } from "../utils/status";
 import { InstalatorSchema } from "../features/localStore/schemas/instalatorSchema";
-
-function StatusIndicator({ ok }: { ok: boolean }) {
-  return (
-    <ThemeIcon variant="transparent" color={ok ? "green" : "red"} size="sm">
-      {ok ? (
-        <CheckCircleIcon size={16} weight="fill" />
-      ) : (
-        <XCircleIcon size={16} weight="fill" />
-      )}
-    </ThemeIcon>
-  );
-}
 
 interface AgentStatusCardProps {
   status: AppStatus;
@@ -38,12 +25,6 @@ export async function AgentStatusCard({
             ACTIVE STRATEGY
           </Text>
           <Text size="xs">{instalator?.instal_method || "-"} </Text>
-        </Group>
-        <Group justify="space-between">
-          <Text size="xs" c="dimmed">
-            DOWNLOADER
-          </Text>
-          <StatusIndicator ok={status.downloader_ok} />
         </Group>
       </Stack>
     </Card>

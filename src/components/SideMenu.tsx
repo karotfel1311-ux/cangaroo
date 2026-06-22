@@ -6,28 +6,28 @@ import {
   HardDriveIcon,
   NetworkIcon,
 } from "@phosphor-icons/react/dist/ssr";
-import { AppConfig } from "../queries/getConfig";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { SettingsDrawer } from "../features/settings/components/SettingsDrawer";
+import { ConfigDrawer } from "../features/configuration/components/ConfigDrawer";
 import { AppStatus } from "../utils/status";
 import { CreateTaskDrawer } from "../features/downloader/components/CreateTaskDrawer";
 import { revalidateStorage } from "../features/localScanner/actions/revalidateStorage";
+import { ConfigSchema } from "../features/configuration/schemas/configSchema";
 
 interface SideMenuProps {
-  config: AppConfig;
+  config: ConfigSchema;
   status: AppStatus;
-  settingsInstalatorOptions:
+  configInstalatorOptions:
     | Record<string, string | Record<string, string>>
     | undefined;
-  settingsInstalatorMeta: Record<string, unknown> | undefined;
+  configInstalatorMeta: Record<string, unknown> | undefined;
 }
 
 export function SideMenu({
   config,
   status,
-  settingsInstalatorMeta,
-  settingsInstalatorOptions,
+  configInstalatorMeta,
+  configInstalatorOptions,
 }: SideMenuProps) {
   const pathname = usePathname();
 
@@ -84,14 +84,14 @@ export function SideMenu({
           onClick={revalidateStorage}
         />
         <NavLink label="Reconnect downloader" href="#" onClick={() => {}} />
-        <SettingsDrawer
+        <ConfigDrawer
           config={config}
           status={status}
-          settingsInstalatorMeta={settingsInstalatorMeta}
-          settingsInstalatorOptions={settingsInstalatorOptions}
+          configInstalatorMeta={configInstalatorMeta}
+          configInstalatorOptions={configInstalatorOptions}
         >
-          {(show) => <NavLink label="Settings" href="#" onClick={show} />}
-        </SettingsDrawer>
+          {(show) => <NavLink label="Configuration" href="#" onClick={show} />}
+        </ConfigDrawer>
       </Box>
       {/* <RefreshButton /> */}
     </>

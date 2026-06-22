@@ -1,4 +1,4 @@
-import { getRawConfigContent } from "../../../utils/config";
+import { getRawConfigContent } from "../../configuration/utils/getRawConfigContent";
 import { instalators } from "../integrations";
 import { instalatorSchema } from "../schemas/instalatorSchema";
 
@@ -13,7 +13,12 @@ export async function getInstalatorConfig() {
 }
 
 export function getInstalatorMetadata() {
-  return instalatorSchema.meta();
+  return Object.fromEntries(
+    Object.entries(instalators).map(([key, instalator]) => [
+      key,
+      { ...instalator.meta, description: instalator.description },
+    ]),
+  );
 }
 
 export async function getActiveInstalator() {

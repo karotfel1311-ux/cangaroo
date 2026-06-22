@@ -6,7 +6,6 @@ import { detectDevice } from "../detectDevice";
 import { Device } from "../../types";
 
 export interface AppStatus {
-  downloader_ok: boolean;
   device: Device;
 }
 
@@ -16,7 +15,6 @@ export async function getAppStatus(): Promise<AppStatus> {
   const device = detectDevice(userAgent);
 
   return {
-    downloader_ok: true,
     device,
   };
 }

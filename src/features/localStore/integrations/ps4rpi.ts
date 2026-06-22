@@ -7,10 +7,9 @@ export const ps4rpi = declareInstalator("PS4RPI", {
     .object({
       port: z.string(),
     })
-    .default({ port: "9999" })
-    .meta({
-      description: "Remote Package Installer app",
-    }),
+    .default({ port: "9999" }),
+  description: "Remote Package Installer app",
+  meta: {},
   handler: async (url, config) => {
     const formData = new FormData();
     formData.append("url", url);

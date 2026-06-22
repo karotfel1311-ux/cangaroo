@@ -8,12 +8,12 @@ import {
   Center,
 } from "@mantine/core";
 
-import { safeArray } from "../../../../../../utils/safeArray";
-import { strategies } from "../../../../../../features/remoteRepository";
-import { ListPagination } from "../../../../../../components/ListPagination";
-import { ListSearch } from "../../../../../../components/ListSearch";
-import { PageWrapper } from "../../../../../../components/PageWrapper";
-import { LinkButton } from "../../../../../../components/LinkButton";
+import { safeArray } from "../../../../../utils/safeArray";
+import { strategies } from "../../../../../features/remoteRepository";
+import { ListPagination } from "../../../../../components/ListPagination";
+import { ListSearch } from "../../../../../components/ListSearch";
+import { PageWrapper } from "../../../../../components/PageWrapper";
+import { LinkButton } from "../../../../../components/LinkButton";
 
 export default async function Page({
   params,

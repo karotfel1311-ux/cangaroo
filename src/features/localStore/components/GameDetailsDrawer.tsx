@@ -2,7 +2,6 @@ import {
   Accordion,
   ActionIcon,
   Badge,
-  Box,
   Code,
   Divider,
   Drawer,
@@ -12,7 +11,6 @@ import {
   Stack,
   Text,
 } from "@mantine/core";
-import { AppConfig } from "../../../queries/getConfig";
 import { InstalatorSchema } from "../schemas/instalatorSchema";
 import { PkgMappedItem } from "../../localScanner/utils/types";
 import { withTrigger } from "../../../components/with-trigger";
@@ -22,10 +20,11 @@ import { useToast } from "../../../providers/ToastProvider";
 import { installPackage } from "../actions/installPackage";
 import { log } from "../../../utils/serverLog";
 import { useState } from "react";
+import { ConfigSchema } from "../../configuration/schemas/configSchema";
 
 interface GameDetailsDrawerProps {
   item: PkgMappedItem;
-  appConfig: AppConfig;
+  appConfig: ConfigSchema;
   instalConfig: InstalatorSchema;
 }
 
