@@ -1,13 +1,15 @@
 "use server";
 
+import { declareServerAction } from "../../../utils/declareServerAction";
 import { getActiveDownloader } from "../utils/getActiveDownloader";
 
-export async function createTask(
-  links: Array<string>,
-  id: string,
-  password?: string,
-) {
-  const jd = await getActiveDownloader();
+export const createTask = declareServerAction(
+  async (input: { links: Array<string>; id: string; password?: string }) => {
+    const jd = await getActiveDownloader();
 
-  await jd?.createTask(links, { id, password });
-}
+    await jd?.createTask(input.links, {
+      id: input.id,
+      password: input.password,
+    });
+  },
+);

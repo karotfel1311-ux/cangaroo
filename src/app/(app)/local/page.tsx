@@ -1,3 +1,5 @@
+"use server";
+
 import { safeArray } from "../../../utils/safeArray";
 import { PageWrapper } from "../../../components/PageWrapper";
 import { ListSearch } from "../../../components/ListSearch";

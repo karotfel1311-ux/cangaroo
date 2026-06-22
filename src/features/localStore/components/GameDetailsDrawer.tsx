@@ -46,12 +46,12 @@ export const GameDetailsDrawer = withTrigger<GameDetailsDrawerProps>(
     );
 
     const handler = async (items: Array<string>) => {
-      try {
-        await installPackage(items);
+      const result = await installPackage(items);
+      if (result.ok) {
         showToast("Task started on device!", true);
-      } catch (err) {
-        log("Install pkg failed", err);
-        showToast("This strategy is not available.", false);
+      } else {
+        log("Install pkg failed", result.error);
+        showToast("Install pkg failed.", false);
       }
     };
     return (

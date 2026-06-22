@@ -18,31 +18,21 @@ export const ps4dpi = declareInstalator("PS4DPI", {
     const consoleAddress = config?.console_address;
     const consolePort = config?.port;
     const payload = {
-      type: "proxy", // lub "ref_pkg_url" dla manifestów
-      packages: [url], // można podać wiele linków
+      type: "proxy",
+      packages: [url],
     };
-    console.log({
-      req: `http://${consoleAddress}:${consolePort}/api/install`,
+
+    const response = await axios.post(
+      `http://${consoleAddress}:${consolePort}/api/install`,
       payload,
-    });
-
-    try {
-      const response = await axios.post(
-        `http://${consoleAddress}:${consolePort}/api/install`,
-        payload,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          timeout: 15_000, // 15 sekund
+      {
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        timeout: 15_000,
+      },
+    );
 
-      console.log("✅ Sukces!", response.data);
-      return response.data;
-    } catch (err: any) {
-      console.error("❌ Błąd instalacji:", err.response?.data || err.message);
-      throw err;
-    }
+    return response.data;
   },
 });

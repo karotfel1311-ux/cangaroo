@@ -3,7 +3,6 @@ import {
   Drawer,
   NativeSelect,
   Stack,
-  Text,
   TextInput,
   Blockquote,
   Accordion,
@@ -20,7 +19,7 @@ import { ConfigSchema } from "../schemas/configSchema";
 
 interface ConfigDrawerProps {
   config: ConfigSchema;
-  status: AppStatus;
+  status: AppStatus | null;
   configInstalatorOptions:
     | Record<string, string | Record<string, string>>
     | undefined;
@@ -38,9 +37,14 @@ export const ConfigDrawer = withTrigger<ConfigDrawerProps>((props) => {
   ).filter(([_, opt]) => typeof opt === "object");
 
   const onSubmit = async (values: Record<string, string>) => {
-    handleUpdateConfig(values);
-    toast("Configuration updated", true);
-    props.handleHide();
+    const res = await handleUpdateConfig(values);
+
+    if (res.ok) {
+      toast("Configuration updated", true);
+      props.handleHide();
+    } else {
+      toast("Failed to update configuration", false);
+    }
   };
 
   return (

@@ -36,6 +36,7 @@ export function declareInstalator<T extends ZodDefault<ZodObject>>(
       });
     } catch (err) {
       console.warn("Instalator error", err);
+      throw err;
     }
   };
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, Suspense } from "react";
 import "@mantine/core/styles.css";
 import {
   ColorSchemeScript,
@@ -23,7 +23,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body style={{ overflow: "hidden" }}>
         <ReactQueryProvider>
           <MantineProvider>
-            <ToastProvider>{children}</ToastProvider>
+            <ToastProvider>
+              <Suspense>{children}</Suspense>
+            </ToastProvider>
           </MantineProvider>
         </ReactQueryProvider>
       </body>

@@ -3,7 +3,7 @@ import { AppStatus } from "../utils/status";
 import { InstalatorSchema } from "../features/localStore/schemas/instalatorSchema";
 
 interface AgentStatusCardProps {
-  status: AppStatus;
+  status: AppStatus | null;
   instalator: InstalatorSchema | undefined;
 }
 
@@ -18,7 +18,7 @@ export async function AgentStatusCard({
           <Text size="xs" c="dimmed">
             CURRENT DEVICE
           </Text>
-          <Text size="xs">{status.device}</Text>
+          <Text size="xs">{status?.device}</Text>
         </Group>
         <Group justify="space-between">
           <Text size="xs" c="dimmed">

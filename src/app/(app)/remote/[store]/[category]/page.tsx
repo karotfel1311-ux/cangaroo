@@ -14,6 +14,7 @@ import { ListPagination } from "../../../../../components/ListPagination";
 import { ListSearch } from "../../../../../components/ListSearch";
 import { PageWrapper } from "../../../../../components/PageWrapper";
 import { LinkButton } from "../../../../../components/LinkButton";
+import { notFound } from "next/navigation";
 
 export default async function Page({
   params,
@@ -26,6 +27,10 @@ export default async function Page({
 
   const fetcher = store in strategies ? strategies[store] : null;
   const data = await fetcher?.fetchList(page, search, category);
+
+  if (!data) {
+    notFound();
+  }
 
   return (
     <PageWrapper

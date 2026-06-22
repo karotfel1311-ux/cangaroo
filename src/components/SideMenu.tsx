@@ -16,7 +16,7 @@ import { ConfigSchema } from "../features/configuration/schemas/configSchema";
 
 interface SideMenuProps {
   config: ConfigSchema;
-  status: AppStatus;
+  status: AppStatus | null;
   configInstalatorOptions:
     | Record<string, string | Record<string, string>>
     | undefined;

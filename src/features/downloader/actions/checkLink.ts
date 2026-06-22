@@ -4,6 +4,7 @@ import z from "zod";
 import { checkLinkSchema } from "../schemas/checkLinkSchema";
 import { getHtml } from "../../../utils/getHtml";
 import { createTask } from "./createTask";
+import { declareServerAction } from "../../../utils/declareServerAction";
 
 const GOOD_PROVIDERS = ["mediafire", "aki"] as const;
 
@@ -57,8 +58,8 @@ async function findDirectLink(
   }
 }
 
-export async function checkLink(input: z.infer<typeof checkLinkSchema>) {
-  try {
+export const checkLink = declareServerAction(
+  async (input: z.infer<typeof checkLinkSchema>) => {
     const parsed = await checkLinkSchema.parseAsync(input);
 
     const finalLinks: string[] = [];
@@ -75,11 +76,8 @@ export async function checkLink(input: z.infer<typeof checkLinkSchema>) {
     }
 
     if (finalLinks.length > 0) {
-      await createTask(finalLinks, input.id);
+      await createTask({ links: finalLinks, id: input.id });
       return true;
     }
-  } catch (err) {
-    console.error("Check link error", err);
-    return false;
-  }
-}
+  },
+);

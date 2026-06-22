@@ -1,5 +1,3 @@
-"use server";
-
 import {
   AppShell,
   AppShellMain,
@@ -21,10 +19,9 @@ import { getBaseConfigContent } from "../../features/configuration/utils/getConf
 
 export default async function Layout(props: LayoutProps<"/">) {
   const config = getBaseConfigContent();
-  const status = await getAppStatus();
+  const { data: status } = await getAppStatus(null);
   const instalatorConfig = await getInstalatorConfig();
   const instalatorMeta = getInstalatorMetadata();
-
   return (
     <AppShell layout="alt" navbar={{ width: 300, breakpoint: 0 }}>
       <AppShellNavbar p="md" visibleFrom="sm">

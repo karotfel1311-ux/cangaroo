@@ -40,7 +40,7 @@ export const CreateTaskDrawer = withTrigger(({ handleHide, isVisible }) => {
       const urls = parsed.links.map((line) => line.trim()).filter(Boolean);
       const password = parsed.password;
 
-      await createTask(urls, "TASK1", password);
+      await createTask({ links: urls, id: "TASK1", password });
 
       showToast("Task created!", true);
     } catch (err) {
